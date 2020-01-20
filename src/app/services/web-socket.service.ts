@@ -10,21 +10,22 @@ export class WebSocketService {
   greeting: any;
   handler: any;
   webSocketEndPoint: string = 'http://localhost:8080/ws';
-  
+
   constructor() { }
   _connect(handler, component) {
     console.log(this.webSocketEndPoint);
     let socket = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(socket);
-  
-  console.log("socket connection .. ");
-  this.stompClient.connect({}, frame => {
-    this.stompClient.subscribe(this.topic, sdkEvent => {
-      handler(sdkEvent, component);
-      //this.onMessageReceived(sdkEvent);
+
+    console.log("socket connection .. ");
+    this.stompClient.connect({}, frame => {
+      this.stompClient.subscribe(this.topic, sdkEvent => {
+        handler(sdkEvent, component);
+        //this.onMessageReceived(sdkEvent);
+      });
     });
-  });
   };
+  
   errorCallBack(error) {
     console.log("errorCallBack -> " + error)
     setTimeout(() => {
@@ -40,5 +41,5 @@ export class WebSocketService {
   onMessageReceived(sdkEvent) {
     console.log(sdkEvent);
   }
-  
+
 }
