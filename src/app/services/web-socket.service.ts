@@ -5,20 +5,40 @@ import * as SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebSocketService {
-
-  webSocketEndPoint: string = 'http://localhost:8080/ws';
+  topic: string = "/topic/greetings";
   stompClient: any;
+  greeting: any;
+  handler: any;
+  webSocketEndPoint: string = 'http://localhost:8080/ws';
+  
   constructor() { }
-  _connect() {
-    console.log("Initialize WebSocket Connection");
+  _connect(handler, component) {
+    console.log(this.webSocketEndPoint);
     let socket = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(socket);
-    return this.stompClient;
+  
+  console.log("socket connection .. ");
+  this.stompClient.connect({}, frame => {
+    this.stompClient.subscribe(this.topic, sdkEvent => {
+      handler(sdkEvent, component);
+      //this.onMessageReceived(sdkEvent);
+    });
+  });
   };
   errorCallBack(error) {
     console.log("errorCallBack -> " + error)
     setTimeout(() => {
-      this._connect();
+      //this._connect(handler);
     }, 5000);
+
   }
+
+  sendUpdates(updatedMessage) {
+    console.log("calling logout api via web socket");
+    this.stompClient.send("/app/hello", {}, JSON.stringify(updatedMessage));
+  }
+  onMessageReceived(sdkEvent) {
+    console.log(sdkEvent);
+  }
+  
 }

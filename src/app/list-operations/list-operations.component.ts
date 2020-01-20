@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from '../services/web-socket.service';
 
 @Component({
   selector: 'app-list-operations',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOperationsComponent implements OnInit {
 
-  constructor() { }
+  greeting: any;
+  name: string;
+  constructor() {
 
-  ngOnInit() {
+    
   }
 
+  ngOnInit() {
+    
+  }
+  
 }
