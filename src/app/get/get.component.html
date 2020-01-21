@@ -23,19 +23,18 @@
 
     <!-- Right content -->
     <div style="flex: 1;">
-        <form [formGroup]="employeeDataByIDForm" (ngSubmit)="getEmployeeIdSubmit(employeeDataByIDForm.value.employeeId)">
+        <form [formGroup]="employeeDataByIDForm">
 
             <div>
                 <input id="employeeId" type="number" placeholder="Enter employeeId" formControlName="employeeId" required="true">
             </div>
         
         
-            <button class="button" type="submit">Get Employee</button>
+            <button class="button" (click)="getEmployeeIdSubmit()">Get Employee</button>
         </form>
         
         
-        
-        <ul class="list-group"   *ngIf="selectedGETEmployeeIdOperation === true">
+        <ul class="list-group"   *ngIf="employee">
         
             <div class="listSpace"></div>
             <div class="emailSpace">Email: {{employee.email}}</div>

@@ -14,7 +14,6 @@ export class GetComponent implements OnInit {
 
   greeting: any;
   name: string;
-  selectedGETEmployeeIdOperation: boolean;
   employeeDataByIDForm;
   allEmployees: Employee[];
   employee;
@@ -24,7 +23,6 @@ export class GetComponent implements OnInit {
     private forBuilder: FormBuilder,
     private webSocketService: WebSocketService
   ) {
-   
     this.employeeDataByIDForm = this.forBuilder.group({
       employeeId: ''
     });
@@ -41,21 +39,22 @@ export class GetComponent implements OnInit {
     this.usersService.getAllEmployees().subscribe(
       result => {
         this.allEmployees = result;
-        console.log(this.allEmployees);
+        // console.log(this.allEmployees);
       })
   }
 
-  getEmployeeIdSubmit(employeeId: number) {
-
-    this.selectedGETEmployeeIdOperation = true;
-    this.usersService.getEmployeeById(employeeId)
-      .subscribe(result => {
-        this.employee = result;
-        console.log(result)
-      }, error => {
-        window.alert(error.error.meesage);
-      })
-
+  getEmployeeIdSubmit() {
+    const employeeId = this.employeeDataByIDForm.value.employeeId;
+    if (employeeId || employeeId === 0) {
+      this.usersService.getEmployeeById(employeeId)
+        .subscribe(result => {
+          console.log(result)
+          this.employee = result;
+        }, error => {
+          this.employee = null;
+          window.alert(error.error.message);
+        })
+    }
   }
   updateEmployee(employeeID: number) {
     this.route.navigate(['operations/updateEmployee', employeeID]);
