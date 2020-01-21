@@ -17,6 +17,7 @@ export class GetComponent implements OnInit {
   employeeDataByIDForm;
   allEmployees: Employee[];
   employee;
+  
   constructor(
     private usersService: EmployeeService,
     private route: Router,
@@ -57,6 +58,7 @@ export class GetComponent implements OnInit {
     }
   }
   updateEmployee(employeeID: number) {
+    
     this.route.navigate(['operations/updateEmployee', employeeID]);
   }
   connect() {
@@ -64,7 +66,22 @@ export class GetComponent implements OnInit {
   }
 
   handleMessage(message, component) {
-    component.allEmployees = JSON.parse(message.body);
-    console.log(component.allEmployees);
+    message = JSON.parse(message.body);
+    console.log(message);
+    console.log(message.operation);
+    console.log(message.data);
+    if(message.operation ==="POST"){
+      component.allEmployees.push(message.data);
+    }
+    if(message.operation ==="DELETE"){
+      component.allEmployees = component.allEmployees.filter(employee => employee.id !==message.data);
+    }
+    if(message.operation ==="PUT"){
+      // let getEmployee = component.allEmployees.find(employee => employee.id === message.data.id);
+      // let index = component.allEmployees.indexOf(getEmployee);
+      let index  = component.allEmployees.findIndex(employee => employee.id === message.data.id);
+      component.allEmployees[index] = message.data;
+    }
   }
+ 
 }
