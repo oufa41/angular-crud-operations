@@ -28,7 +28,7 @@ export class PostComponent implements OnInit {
   }
   saveEmployeeSubmit(employee: Employee) {
     this.usersService.saveEmployee(employee).subscribe(result => {
-      
+      window.alert("Your data saved");
     },error => window.alert(error))
   }
 

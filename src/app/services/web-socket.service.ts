@@ -5,7 +5,7 @@ import * as SockJS from 'sockjs-client';
   providedIn: 'root'
 })
 export class WebSocketService {
-  topic: string = "/topic/greetings";
+  topic: string = "/topic/employees";
   stompClient: any;
   greeting: any;
   handler: any;
