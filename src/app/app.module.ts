@@ -11,6 +11,7 @@ import { GetComponent } from './get/get.component';
 import { PostComponent } from './post/post.component';
 import { UpdateComponent } from './update/update.component';
 import { DeleteComponent } from './delete/delete.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DeleteComponent } from './delete/delete.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },

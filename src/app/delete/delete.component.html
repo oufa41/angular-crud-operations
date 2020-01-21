@@ -1,4 +1,18 @@
 <h3>DELETE</h3>
+<p>
+    <ngb-alert [dismissible]="false">
+        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    </ngb-alert>
+</p>
+<!-- <div class="alert alert-warning" role="alert">
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
 <form [formGroup]="deleteEmployeeDataByIDForm"
     (ngSubmit)="deleteEmployeeIdSubmit(deleteEmployeeDataByIDForm.value.employeeId)">
 
