@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { GetComponent } from './get/get.component';
 import { PostComponent } from './post/post.component';
 import { UpdateComponent } from './update/update.component';
 import { DeleteComponent } from './delete/delete.component';
+import { EmployeeErrorHandlerModule } from './modules/employee-error-handler/employee-error-handler.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DeleteComponent } from './delete/delete.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    EmployeeErrorHandlerModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },

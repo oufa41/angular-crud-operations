@@ -51,10 +51,7 @@ export class GetComponent implements OnInit {
         .subscribe(result => {
           console.log(result)
           this.employee = result;
-        }, error => {
-          this.employee = null;
-          window.alert(error.error.message);
-        })
+        });
     }
   }
   updateEmployee(employeeID: number) {
@@ -67,9 +64,7 @@ export class GetComponent implements OnInit {
 
   handleMessage(message, component) {
     message = JSON.parse(message.body);
-    console.log(message);
-    console.log(message.operation);
-    console.log(message.data);
+    
     if(message.operation ==="POST"){
       component.allEmployees.push(message.data);
     }

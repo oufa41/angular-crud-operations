@@ -30,7 +30,7 @@ export class EmployeeService {
     return this.http.put(this.employeeAPI,value);
   }
   deleteEmployeeById(employeeId: number) {
-    return this.http.delete(this.employeeAPI + '/' + employeeId, { responseType: 'text' });
+    return this.http.delete(this.employeeAPI + '/' + employeeId);
   }
  
 }

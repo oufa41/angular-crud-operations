@@ -25,10 +25,7 @@ export class DeleteComponent implements OnInit {
   deleteEmployeeIdSubmit(employeeId: number) {
     this.usersService.deleteEmployeeById(employeeId).subscribe(result => {
       window.alert(result);
-    },error =>{
-      error = JSON.parse(error.error);
-      window.alert(error.message);
-    })
+    });
   }
 }
 
