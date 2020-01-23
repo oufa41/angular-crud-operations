@@ -1,4 +1,8 @@
 <h3>DELETE</h3>
+
+<div *ngIf="errorMsg">
+<alert type= "danger">{{errorMsg}}</alert>
+</div>
 <form [formGroup]="deleteEmployeeDataByIDForm"
     (ngSubmit)="deleteEmployeeIdSubmit(deleteEmployeeDataByIDForm.value.employeeId)">
 
@@ -7,4 +11,4 @@
     </div>
 
     <button class="button" type="submit">Delete Employee</button>
-</form>
+</form> 

@@ -1,11 +1,16 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, Injectable, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-class EmployeeErrorHandler implements ErrorHandler {
+@Injectable({ providedIn: 'root' })
+export class EmployeeErrorHandler implements ErrorHandler {
+
+  public message = 'test';
+
   handleError(error: any): void {
-    console.log(error.error.message);
+   // this.message = error.error.message;
+   // console.log(this.message);
   }
- 
+
 }
 
 
@@ -14,6 +19,8 @@ class EmployeeErrorHandler implements ErrorHandler {
   imports: [
     CommonModule
   ],
-  providers: [{provide: ErrorHandler, useClass: EmployeeErrorHandler}]
+  providers: [
+    //{ provide: ErrorHandler, useClass: EmployeeErrorHandler }
+  ]
 })
 export class EmployeeErrorHandlerModule { }

@@ -11,7 +11,9 @@ import { GetComponent } from './get/get.component';
 import { PostComponent } from './post/post.component';
 import { UpdateComponent } from './update/update.component';
 import { DeleteComponent } from './delete/delete.component';
-import { EmployeeErrorHandlerModule } from './modules/employee-error-handler/employee-error-handler.module';
+import { EmployeeErrorHandlerModule, EmployeeErrorHandler } from './modules/employee-error-handler/employee-error-handler.module';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { EmployeeService } from './services/employee.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,6 @@ import { EmployeeErrorHandlerModule } from './modules/employee-error-handler/emp
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    EmployeeErrorHandlerModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
@@ -41,9 +42,10 @@ import { EmployeeErrorHandlerModule } from './modules/employee-error-handler/emp
       ] },
       { path: 'operations/updateEmployee/:id', component: UpdateComponent },
       //{ path: 'operations/get', component: GetComponent }
-    ])
+    ]),
+    AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

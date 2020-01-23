@@ -41,5 +41,6 @@ export class WebSocketService {
   onMessageReceived(sdkEvent) {
     console.log(sdkEvent);
   }
+  
 
 }
